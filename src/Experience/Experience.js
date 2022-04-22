@@ -5,6 +5,7 @@ import Resources from './Utils/Resources'
 import Debug from './Utils/Debug'
 import Camera from './Camera'
 import Renderer from './Renderer'
+import InteractionManager from './InteractionManager'
 import sources from './sources'
 import World from './World/World'
 
@@ -35,6 +36,7 @@ export default class Experience
         this.resources = new Resources(sources)
         this.camera = new Camera()
         this.renderer = new Renderer()
+        this.interactionManager = new InteractionManager()
         this.world = new World()
 
         // Sizes resize event

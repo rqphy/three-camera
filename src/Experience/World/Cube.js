@@ -10,6 +10,7 @@ export default class Cube
     {
         this.experience = new Experience()
         this.scene = this.experience.scene
+        this.interactionManager = this.experience.interactionManager
         this.resources = this.experience.resources
         this.#color = color
         this.#position = position
@@ -37,6 +38,15 @@ export default class Cube
         })
     }
 
+    setInteractions()
+    {
+        this.mesh.addEventListener('click', (_event) =>
+        {
+            _event.stopPropagation()
+            console.log(this.mesh)
+        })
+    }
+
     setMesh()
     {
         this.mesh = new THREE.Mesh(this.geometry, this.material)
@@ -45,6 +55,8 @@ export default class Cube
             this.#position.y,
             this.#position.z
         )
+        this.setInteractions()
+        this.interactionManager.addMesh(this.mesh)
         this.scene.add(this.mesh)
     }
 }
