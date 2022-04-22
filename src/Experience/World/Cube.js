@@ -32,7 +32,6 @@ export default class Cube
 
     setMaterial()
     {
-        console.log(this.#color)
         this.material = new THREE.MeshStandardMaterial({
             color: this.#color
         })
