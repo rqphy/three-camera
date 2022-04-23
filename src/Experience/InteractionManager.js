@@ -12,7 +12,6 @@ export default class InteractionManager
         this.camera = this.experience.camera
         this.renderer = this.experience.renderer
         
-        console.log(this.renderer, this.camera, this.canvas)
         this.setInstance()
     }
 

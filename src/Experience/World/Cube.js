@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import { Camera } from 'three';
 import Experience from '../Experience'
 
 export default class Cube
@@ -48,11 +47,6 @@ export default class Cube
             const cube = _event.target
             this.camera.instance.position.set(
                 cube.position.x, 
-                cube.position.y,
-                this.camera.instance.position.z
-            )
-            console.log(
-                cube.position.x,
                 cube.position.y,
                 this.camera.instance.position.z
             )
