@@ -19,8 +19,8 @@ export default class InteractionManager
     setInstance()
     {
         this.instance = new InteractManager(
-            this.renderer,
-            this.camera,
+            this.renderer.instance,
+            this.camera.instance,
             this.canvas
         )
     }
