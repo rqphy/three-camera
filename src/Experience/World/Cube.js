@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { Camera } from 'three';
 import Experience from '../Experience'
 
 export default class Cube
@@ -10,6 +11,7 @@ export default class Cube
     {
         this.experience = new Experience()
         this.scene = this.experience.scene
+        this.camera = this.experience.camera
         this.interactionManager = this.experience.interactionManager
         this.resources = this.experience.resources
         this.#color = color
@@ -43,7 +45,17 @@ export default class Cube
         this.mesh.addEventListener('click', (_event) =>
         {
             _event.stopPropagation()
-            console.log(this.mesh)
+            const cube = _event.target
+            this.camera.instance.position.set(
+                cube.position.x, 
+                cube.position.y,
+                this.camera.instance.position.z
+            )
+            console.log(
+                cube.position.x,
+                cube.position.y,
+                this.camera.instance.position.z
+            )
         })
     }
 
