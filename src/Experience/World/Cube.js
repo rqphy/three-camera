@@ -45,11 +45,10 @@ export default class Cube
         {
             _event.stopPropagation()
             const cube = _event.target
-            this.camera.instance.position.set(
-                cube.position.x, 
-                cube.position.y,
-                this.camera.instance.position.z
-            )
+            this.camera.setAnimationLimits({
+                x: cube.position.x,
+                y: cube.position.y
+            })
         })
     }
 

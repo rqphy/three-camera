@@ -10,8 +10,10 @@ export default class Camera
         this.sizes = this.experience.sizes
         this.scene = this.experience.scene
         this.canvas = this.experience.canvas
+        this.time = this.experience.time
 
         this.setInstance()
+        this.setAnimation()
         // this.setOrbitControls()
     }
 
@@ -33,6 +35,27 @@ export default class Camera
         this.controls.enableDamping = true
     }
 
+    setAnimation()
+    {
+        this.animations = {}
+
+        this.animations.x = 0
+        this.animations.y = 0
+
+        this.animations.limits = {}
+        this.animations.limits.x = 0
+        this.animations.limits.y = 0
+
+        this.animations.speed = {}
+        this.animations.speed.x = 0.00061
+        this.animations.speed.y = 0.00061
+    }
+
+    setAnimationLimits(limits)
+    {
+        this.animations.limits = limits
+    }
+
     resize()
     {
         this.instance.aspect = this.sizes.width / this.sizes.height
@@ -41,6 +64,26 @@ export default class Camera
 
     update()
     {
+        this.animations.x += this.animations.speed.x * this.time.delta
+        this.animations.y += this.animations.speed.y * this.time.delta
+
+        if(this.animations.x >= this.animations.limits.x)
+        {
+            this.animations.x = this.animations.limits.x
+        }
+
+        if(this.animations.y >= this.animations.limits.y)
+        {
+            this.animations.y = this.animations.limits.y
+        }
+
+
+
+        this.instance.position.set(
+            this.animations.x,
+            this.animations.y,
+            this.animations.z    
+        )
         // this.controls.update()
     }
 }
