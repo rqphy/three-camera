@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import * as TWEEN from "@tweenjs/tween.js"
 import Experience from '../Experience'
 
 export default class Cube
@@ -45,10 +46,27 @@ export default class Cube
         {
             _event.stopPropagation()
             const cube = _event.target
-            this.camera.setAnimationLimits({
+            const coords = {}
+            coords.from = {
+                x: this.camera.instance.position.x,
+                y: this.camera.instance.position.y
+            }
+            coords.to = {
                 x: cube.position.x,
                 y: cube.position.y
-            })
+            }
+
+            new TWEEN.Tween(coords.from)
+                .to(coords.to)
+                .onUpdate(() =>
+                {
+                    this.camera.instance.position.set(
+                        coords.from.x,
+                        coords.from.y,
+                        this.camera.instance.position.z
+                    )
+                })
+                .start()
         })
     }
 
@@ -63,5 +81,10 @@ export default class Cube
         this.setInteractions()
         this.interactionManager.addMesh(this.mesh)
         this.scene.add(this.mesh)
+    }
+
+    update()
+    {
+        TWEEN.update()
     }
 }

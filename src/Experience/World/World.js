@@ -29,5 +29,9 @@ export default class World
     update()
     {
         // Here the update functions
+        for(const cube of this.cubes)
+        {
+            cube.update()
+        }
     }
 }
