@@ -46,6 +46,7 @@ export default class Cube
         {
             _event.stopPropagation()
             const cube = _event.target
+            
             const coords = {}
             coords.from = {
                 x: this.camera.instance.position.x,
